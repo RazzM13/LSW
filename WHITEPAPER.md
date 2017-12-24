@@ -2,6 +2,10 @@
 A 3D geospatial database model for storing, organising and manipulating structured data.
 
 ## Data types
+In LSW units of data, also known as caches, are organized within a hierhical namespace structure that consists of static predefined sections (i.e. `/schemas`) or dynamically generated sections based on a derivative geohash-36 algorithm that augments the original by providing support for scopes and will referenced herein as *scopped geohash-36*.
+
+The scopped geohash-36 algorithm relies upon the original definition for representing 2D world coordinates without support for checksuming or altitude representation; instead, a new concept of *scope* is introduced. A scope is 
+
 ### Caches
 A cache is the basic unit of data within LSW, it comprises of a data property and a metadata property. The data property acts as a container for structured data that is formatted according to a predefined schema; the previously mentioned schema pertains to the metadata property of the cache, more specifically to the value of it's `type` key.
 
