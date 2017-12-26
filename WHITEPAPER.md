@@ -6,7 +6,7 @@ In LSW units of data, also known herein as caches, are organized within a hierhi
 ### Scoped Geohash-36
 The Scoped Geohash-36 algorithm relies upon the original definition for representing 2D world coordinates without support for checksuming or altitude representation; instead, a new concept of *scope* is introduced. A scope can be construed as a delineation of spatial representation such that a geohash value in one scope does not identify with the same value within another scope (i.e. [alternative universes](https://en.wikipedia.org/wiki/Multiverse)).
 
-The syntax for expressing a geohash value referencing a particular scope is the following: `geohash@scope`; the `geohash` part is any valid Geohash-36 string having a maximum size of 10 bytes, whilst the `scope` part is any valid UTF-8 string having a maximum size of 13 bytes (e.g. `BK5q7PHG2H@1989`).
+The syntax for expressing a geohash value referencing a particular scope is the following: `geohash@scope`; the `geohash` part is any valid Geohash-36 string having a maximum size of 10 bytes, whilst the `scope` part is any valid UTF-8 string, including NULL, having a maximum size of 13 bytes (e.g. `BK5q7PHG2H@1989`). Sgeohash values are also permitted the cannonical geohash form, without the `@scope` suffix, however, they must be regarded as `geohash@` when processed (i.e. geohash value with a NULL scope).
 
 ### Caches
 A cache is the basic unit of data within LSW, it comprises of a data property and a metadata property. The data property acts as a container for structured data that is formatted according to a predefined schema; the previously mentioned schema pertains to the metadata property of the cache, more specifically to the value of it's `type` key.
