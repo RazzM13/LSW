@@ -1,13 +1,12 @@
 # LSW - Local Structured Web
 A 3D geospatial database model for storing, organising and manipulating structured data.
 
-In LSW units of data, also known herein as caches, are organized within a hierhical namespace structure that consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scopped Geohash-36*.
+In LSW units of data, also known herein as caches, are organized within a hierhical namespace structure that consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scopped Geohash-36* and, in short form, *sgeohash*.
 
 ### Scopped Geohash-36
+The Scopped Geohash-36 algorithm relies upon the original definition for representing 2D world coordinates without support for checksuming or altitude representation; instead, a new concept of *scope* is introduced. A scope can be construed as a delineation of spatial representation such that a geohash value in one scope does not identify with the same value within another scope (i.e. [alternative universes](https://en.wikipedia.org/wiki/Multiverse)).
 
-The Scopped Geohash-36 algorithm relies upon the original definition for representing 2D world coordinates without support for checksuming or altitude representation; instead, a new concept of *scope* is introduced. A scope can be construed as a delineation of spatial representation (i.e. [alternative universes](https://en.wikipedia.org/wiki/Multiverse)) such that a geohash value in one scope does not identify with the same value within another scope.
-
-The format for expressing a geohash value referencing a particular scope is the following: `geohash@scope`; the `geohash` part is any valid Geohash-36 value whilst the `scope` part is any valid string (e.g. `BK5q7PHG2H@1989`)
+The syntax for expressing a geohash value referencing a particular scope is the following: `geohash@scope`; the `geohash` part is any valid Geohash-36 string having a maximum size of 10 bytes, whilst the `scope` part is any valid UTF-8 string having a maximum size of 13 bytes (e.g. `BK5q7PHG2H@1989`).
 
 ### Caches
 A cache is the basic unit of data within LSW, it comprises of a data property and a metadata property. The data property acts as a container for structured data that is formatted according to a predefined schema; the previously mentioned schema pertains to the metadata property of the cache, more specifically to the value of it's `type` key.
