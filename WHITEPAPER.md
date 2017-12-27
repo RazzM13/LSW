@@ -32,9 +32,13 @@ GeoCache    | /{sgeohash}/{cacheid}         | {sgeohash} is a Scoped Geohash-36 
 ### Reserved namespaces
 
 ### Schema caches
-Schema caches are a type of cache that contains a JSON Schema document and is in itself an instance of `/schemas/LSW/SchemaCache`, which is used by other caches as a blueprint to describe and structurally validate data. In contrast to all other cache types, once created, the SchemaCache can no longer be modified; this design decision has been taken to prevent caches that have been created prior to the alteration of their respective schema from becoming invalid.
+A SchemaCache is a type of cache that is in itself an instance of `/schemas/LSW/SchemaCache` and contains a JSON Schema document, which is used by other caches as a blueprint to describe and structurally validate data. In contrast to all other cache types, once created, the SchemaCache can no longer be modified; this design decision has been taken to prevent caches that have been created prior to the alteration of their respective schema from becoming invalid.
 
 ### Global caches
+A GlobalCache is a type of cache that is created with the purpose of preventing data duplication and simplifying management of shared information, it can be an instance of any of the caches registered under the `/schemas` namespace and should be used as a common resource, by referencing, whenever the need arrises to publish the same information in multiple caches.
+
+Data duplication is an important matter in any large-scale database system, that stems from the underlying need for data sharing and correlation and is especially prevalent in key-value stores; from an LSW perspective, data duplication might occur between caches due to a common trait such as authorship information or a shared resource.
+
 ### Application caches
 ### Geographic caches
 
