@@ -16,6 +16,7 @@ Upon the creation of a cache, the metadata property members are initialized and 
 Key         | Description of Value
 ----------- | --------------------
 id          | A unique identifier that describes a specific cache within the given namespace.
+app         | ??? recommended app
 type        | A unique identifier that references a specific cache within the SCHEMA namespace.
 created_at  | The UNIX-timestamp representation of the moment at which the cache had been created.
 modified_at | The UNIX-timestamp representation of the moment at which the cache had been last modified.
@@ -40,6 +41,8 @@ A GlobalCache is a type of cache that is created with the purpose of preventing 
 Data duplication is an important matter in any large-scale database system, that stems from the underlying need for data sharing and correlation and is especially prevalent in key-value stores; from an LSW perspective, data duplication might occur between caches due to a common trait such as authorship information or a shared resource.
 
 ### Application caches
+An AppCache is a type of cache that is an instance of `/schemas/LSW/AppCache` and represents a software interface for interacting with caches of a specific type, in a packaged format, as described by it's schema. The software interface must be ready to receive the fullpath to a specific cache as a parameter and should provide the user with the ability to view, edit or otherwise interact with the cache.
+
 ### Geospatial caches
 A GeoCache is a type of cache that resides at a given SGeohash location, under an automatically generated [GUID](https://www.ietf.org/rfc/rfc4122.txt), within the LSW namespace (e.g. `/BK5q7PHG2H@1989/6c84fb90-12c4-11e1-840d-7b25c5ee775a`) and it can be an instance of any of the caches registered under the `/schemas` namespace.
 
