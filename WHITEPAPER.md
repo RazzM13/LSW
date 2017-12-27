@@ -29,8 +29,11 @@ GlobalCache | /globals/{username}/{cacheid} | {username} and {cacheid} are human
 AppCache    | /apps/{username}/{cacheid}    | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific AppCache, respectively.
 GeoCache    | /{sgeohash}/{cacheid}         | {sgeohash} is a Scoped Geohash-36 value whilst, {cacheid} is a machine generated, globally unique identifier (GUID) that references a specific GeoCache.
 
+### Reserved namespaces
 
 ### Schema caches
+Schema caches are a type of cache that contains a JSON Schema document and is in itself an instance of `/schemas/LSW/SchemaCache`, which is used by other caches as a blueprint to describe and structurally validate data. In contrast to all other cache types, once created, the SchemaCache can no longer be modified; this design decision has been taken to prevent caches that have been created prior to the alteration of their respective schema from becoming invalid.
+
 ### Global caches
 ### Application caches
 ### Geographic caches
