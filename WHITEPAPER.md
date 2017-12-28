@@ -18,7 +18,7 @@ The syntax for expressing a geohash value referencing a particular scope is the 
 ## Caches
 A cache is the basic unit of data within LSW, it comprises of a data property and a metadata property. The data property acts as a container for structured data that is formatted according to a predefined schema; the previously mentioned schema pertains to the metadata property of the cache, more specifically to the value of it's `type` key.
 
-Upon the creation of a cache, the metadata property members are initialized and the following become immutable: `id`, `type`, `created_at`. For a full description of the metadata property members, please consult the following table:
+Upon the creation of a cache, the metadata property members are initialized and the following become immutable: `id` and `created_at`. For a full description of the metadata property members, please consult the following table:
 
 Key         | Description of Value
 ----------- | --------------------
@@ -36,10 +36,11 @@ Cache type  | Namespace path                | Description of Parameters
 SchemaCache | /schemas/{username}/{cacheid} | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific SchemaCache, respectively.
 GlobalCache | /globals/{username}/{cacheid} | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific GlobalCache, respectively.
 AppCache    | /apps/{username}/{cacheid}    | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific AppCache, respectively.
+HookCache   | /hooks/{username}/{cacheid}   | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific AppCache, respectively.
 GeoCache    | /{sgeohash}/{cacheid}         | {sgeohash} is a Scoped Geohash-36 value whilst, {cacheid} is a machine generated, globally unique identifier (GUID) that references a specific GeoCache.
 
 ### Schema caches
-A SchemaCache is a type of cache that is in itself an instance of `/schemas/LSW/SchemaCache` and contains a [JSON Schema](http://json-schema.org/) document, which is used by other caches as a blueprint to describe and structurally validate data. In contrast to all other cache types, once created, the SchemaCache can no longer be modified; this design decision has been taken to prevent caches that have been created prior to the alteration of their respective schema from becoming invalid.
+A SchemaCache is a type of cache that is in itself an instance of `/schemas/LSW/SchemaCache` and contains a [JSON Schema](http://json-schema.org/) document, which is used by other caches as a blueprint to describe and structurally validate data.
 
 ### Global caches
 A GlobalCache is a type of cache that is created with the purpose of preventing data duplication and simplifying management of shared information, it can be an instance of any of the caches registered under the `/schemas` namespace and should be used as a common resource, by referencing, whenever the need arrises to publish the same information in multiple caches.
@@ -48,6 +49,9 @@ Data duplication is an important matter in any large-scale database system, that
 
 ### Application caches
 An AppCache is a type of cache that is an instance of `/schemas/LSW/AppCache` and represents a software interface for interacting with caches of a specific type, in a packaged format, as described by it's schema. The software interface must be ready to receive the fullpath to a specific cache as a parameter and should provide the user with the ability to view, edit or otherwise interact with the cache.
+
+### Hook caches
+A HookCache is a type of cache that is an instance of either `/schemas/LSW/WebHookCache` or `/schemas/LSW/LambdaHookCache` and provides the ability to trigger an action upon a certain event that occurs within the confines of a given path within the LSW namespace.
 
 ### Geospatial caches
 A GeoCache is a type of cache that resides at a given SGeohash location, under an automatically generated [GUID](https://www.ietf.org/rfc/rfc4122.txt), within the LSW namespace (e.g. `/BK5q7PHG2H@1989/6c84fb90-12c4-11e1-840d-7b25c5ee775a`) and it can be an instance of any of the caches registered under the `/schemas` namespace.
