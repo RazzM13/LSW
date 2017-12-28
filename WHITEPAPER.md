@@ -1,7 +1,14 @@
 # LSW - Local Structured Web
 A 3D geospatial database model for storing, organising and manipulating structured data.
 
-In LSW units of data, also known herein as caches, are organized within a hierhical namespace structure that consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scoped Geohash-36* and, in short form, *SGeohash*.
+In LSW units of data, also known herein as caches, are organized within a hierhical namespace structure that stems from a root of `/` and consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scoped Geohash-36* and, in short form, *SGeohash*.
+
+## Reserved namespaces
+The following namespaces have been reserved for internal use:
+* `/schemas/LSW`
+* `/globals/LSW`
+* `/apps/LSW`
+* `/LSW`
 
 ## Scoped Geohash-36
 The Scoped Geohash-36 algorithm relies upon the original definition for representing 2D world coordinates without support for checksuming or altitude representation; instead, a new concept of *scope* is introduced. A scope can be construed as a delineation of spatial representation such that a geohash value in one scope does not identify with the same value within another scope (i.e. [alternative universes](https://en.wikipedia.org/wiki/Multiverse)).
@@ -15,12 +22,13 @@ Upon the creation of a cache, the metadata property members are initialized and 
 
 Key         | Description of Value
 ----------- | --------------------
-id          | A unique identifier that describes a specific cache within the given namespace.
-app         | ??? recommended app
-type        | A unique identifier that references a specific cache within the SCHEMA namespace.
+id          | An unique identifier for the cache within the given namespace.
+app         | An unique identifier that references a specific AppCache and is used to recommend a software interface for interacting with the cache.
+type        | An unique identifier that references a specific SchemaCache and is used to describe and validate the cache's data.
 created_at  | The UNIX-timestamp representation of the moment at which the cache had been created.
 modified_at | The UNIX-timestamp representation of the moment at which the cache had been last modified.
 
+## Cache  types
 Caches can be categorised based on their designation within the LSW namespace:
 
 Cache type  | Namespace path                | Description of Parameters
@@ -29,10 +37,6 @@ SchemaCache | /schemas/{username}/{cacheid} | {username} and {cacheid} are human
 GlobalCache | /globals/{username}/{cacheid} | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific GlobalCache, respectively.
 AppCache    | /apps/{username}/{cacheid}    | {username} and {cacheid} are human-friendly identifiers that reference a specific user and a specific AppCache, respectively.
 GeoCache    | /{sgeohash}/{cacheid}         | {sgeohash} is a Scoped Geohash-36 value whilst, {cacheid} is a machine generated, globally unique identifier (GUID) that references a specific GeoCache.
-
-### Reserved namespaces
-
-## Cache  types
 
 ### Schema caches
 A SchemaCache is a type of cache that is in itself an instance of `/schemas/LSW/SchemaCache` and contains a [JSON Schema](http://json-schema.org/) document, which is used by other caches as a blueprint to describe and structurally validate data. In contrast to all other cache types, once created, the SchemaCache can no longer be modified; this design decision has been taken to prevent caches that have been created prior to the alteration of their respective schema from becoming invalid.
@@ -48,9 +52,8 @@ An AppCache is a type of cache that is an instance of `/schemas/LSW/AppCache` an
 ### Geospatial caches
 A GeoCache is a type of cache that resides at a given SGeohash location, under an automatically generated [GUID](https://www.ietf.org/rfc/rfc4122.txt), within the LSW namespace (e.g. `/BK5q7PHG2H@1989/6c84fb90-12c4-11e1-840d-7b25c5ee775a`) and it can be an instance of any of the caches registered under the `/schemas` namespace.
 
-## Data types
-## Data structure
-## Data manipulation
+## Working with caches
+
 
 ### 
 
