@@ -1,7 +1,9 @@
 # LSW - Local Structured Web
-A 3D geospatial database model for storing, organising and manipulating structured data.
+A 3D geospatial database model and management system for storing, organising and manipulating structured data.
 
-In LSW units of data, also known herein as caches, are organized within a hierhical namespace structure that stems from a root of `/` and consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scoped Geohash-36* and, in short form, *SGeohash*.
+# The Database Model
+
+In LSW units of data, also known herein as caches, are logically organized within a hierhical namespace structure that stems from a root of `/` and consists of static predefined sections (e.g. `/schemas`) or dynamically generated sections based on a derivative [Geohash-36](https://en.wikipedia.org/wiki/Geohash-36) algorithm that augments the original by providing support for scopes and will be referenced herein as *Scoped Geohash-36* and, in short form, *SGeohash*.
 
 ## Reserved namespaces
 The following namespaces have been reserved for internal use:
@@ -56,7 +58,12 @@ A HookCache is a type of cache that is an instance of either `/schemas/LSW/WebHo
 ### Geospatial caches
 A GeoCache is a type of cache that resides at a given SGeohash location, under an automatically generated [GUID](https://www.ietf.org/rfc/rfc4122.txt), within the LSW namespace (e.g. `/BK5q7PHG2H@1989/6c84fb90-12c4-11e1-840d-7b25c5ee775a`) and it can be an instance of any of the caches registered under the `/schemas` namespace.
 
+# The DBMS
+This DBMS model is an abstract and therefore concepts such as data persistance, performance, access controls and so forth, are the responsability of the underlying implementation.
+
 ## Working with caches
+
+## ???
 
 
 ### 
