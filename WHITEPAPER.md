@@ -58,12 +58,20 @@ A HookCache is a type of cache that is an instance of either `/schemas/LSW/WebHo
 ### Geospatial caches
 A GeoCache is a type of cache that resides at a given SGeohash location, under an automatically generated [GUID](https://www.ietf.org/rfc/rfc4122.txt), within the LSW namespace (e.g. `/BK5q7PHG2H@1989/6c84fb90-12c4-11e1-840d-7b25c5ee775a`) and it can be an instance of any of the caches registered under the `/schemas` namespace.
 
-# The DBMS
+# The DBMS Model
 This DBMS model is an abstract and therefore concepts such as data persistance, performance, access controls and so forth, are the responsability of the underlying implementation.
 
-## Working with caches
+## Implicit caches
+For the purpose of system functionality, a number of caches are required to pre-exist and cannonical versions have been provided within this repository.
 
-## ???
+## User interface
+The role of the user interface is to: authenticate a user with the system; provide an authorized user with the ability to conduct CRUD operations on his/her own caches or caches of other users, to which permissions of doing so have been granted; grant permissions so that other users can execute certain actions on an user's own caches.
+
+In regards to cache manipulation, users must be provided a default software interface for interacting with a cache and should be provided with the recommended software interface, if a cache expresses this preference via it's `app` property.
+
+## Data granularity
+
+## Permissions model
 
 
 ### 
